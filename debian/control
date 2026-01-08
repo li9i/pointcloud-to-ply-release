@@ -1,0 +1,12 @@
+Source: ros-humble-pointcloud-to-ply
+Section: misc
+Priority: optional
+Maintainer: li9i <alexandros.filotheou@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), python3-open3d, ros-humble-ament-cmake, ros-humble-ament-lint-auto <!nocheck>, ros-humble-ament-lint-common <!nocheck>, ros-humble-rclpy, ros-humble-sensor-msgs, ros-humble-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-humble-pointcloud-to-ply
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, python3-open3d, ros-humble-rclpy, ros-humble-sensor-msgs, ros-humble-ros-workspace
+Description: Subscribe to a PointCloud2 topic, reconstruct a mesh, and save to OBJ/PLY.
