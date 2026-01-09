@@ -5,24 +5,49 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Find Python & ROS dependencies
+# find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_python REQUIRED)
-
-find_package(rclpy REQUIRED)
+find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(pcl_ros REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(PCL REQUIRED COMPONENTS common io surface filters features)
 
-ament_python_install_package(${PROJECT_NAME})
+# Include directories
+include_directories(
+  ${PCL_INCLUDE_DIRS}
+)
 
+# Add executable
+add_executable(${PROJECT_NAME}_node src/${PROJECT_NAME}_node.cpp)
+
+# Link libraries
+ament_target_dependencies(${PROJECT_NAME}_node
+  rclcpp
+  sensor_msgs
+  pcl_ros
+  pcl_conversions
+)
+
+target_link_libraries(${PROJECT_NAME}_node
+  ${PCL_LIBRARIES}
+)
+
+# Install targets
+install(TARGETS
+  ${PROJECT_NAME}_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install launch files
 install(DIRECTORY
   launch
-  config
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(PROGRAMS
-  pointcloud_to_ply/pointcloud_to_ply_node.py
-  DESTINATION lib/${PROJECT_NAME}
-)
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ament_package()
