@@ -50,4 +50,4 @@ tracks:
     ros_distro: jazzy
     vcs_type: git
     vcs_uri: https://github.com/li9i/pointcloud-to-ply.git
-    version: 0.0.6
+    version: 0.0.7
