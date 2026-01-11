@@ -1,0 +1,12 @@
+Source: ros-jazzy-pointcloud-to-ply
+Section: misc
+Priority: optional
+Maintainer: li9i <alexandros.filotheou@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), libpcl-dev, ros-jazzy-ament-cmake, ros-jazzy-ament-lint-auto <!nocheck>, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-pcl-conversions, ros-jazzy-pcl-ros, ros-jazzy-rclcpp, ros-jazzy-sensor-msgs, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-pointcloud-to-ply
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpcl-dev, ros-jazzy-pcl-conversions, ros-jazzy-pcl-ros, ros-jazzy-rclcpp, ros-jazzy-sensor-msgs, ros-jazzy-ros-workspace
+Description: Subscribe to a PointCloud2 topic, reconstruct a mesh, and save to OBJ/PLY using PCL.
